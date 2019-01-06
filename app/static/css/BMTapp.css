@@ -1,0 +1,31 @@
+.bg-primary{
+    background-color:#f0f0f0!important
+}
+
+.bg-secondary{
+    background-color:#f8de00!important
+}
+body{
+    background-color:#f0f0f0!important
+}
+
+#mainBody
+{padding-top: 160pt}
+
+.text-black-70 { 
+    color: rgb(70, 70, 70)
+}
+
+.footer{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+section {
+    padding: 1rem 0;
+}
+
+.nav-item-right{
+    position: absolute;
+    right: 0px;
+}

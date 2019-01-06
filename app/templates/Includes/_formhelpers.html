@@ -1,0 +1,55 @@
+{% macro render_field(field) %}
+    {{ field.label }}
+    {{ field(**kwargs)|safe }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span style="color: red;" class="help-inline">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_field_no_label(field) %}
+    {{ field(**kwargs)|safe }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span style="color: red;" class="help-inline">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+
+{% macro render_radio_field(field) %}
+    {{ field.label }} :
+    <!--{{ field(**kwargs)|safe }} -->
+    {% for value, label, _ in field.iter_choices() %}
+        <div class="form-check form-check-inline">
+            <label>
+                <input type="radio" name="{{ field.id }}" id="{{ field.id }}" value="{{ value }}">{{ label }}
+            </label>
+        </div>
+    {% endfor %}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span style="color: red;" class="help-inline">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_dropdown_field(field) %}
+    {{ field.label }}
+    {{ field(**kwargs)|safe }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span style="color: red;" class="help-inline">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_dropdown_field_no_label(field) %}
+    {{ field(**kwargs)|safe }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <span style="color: red;" class="help-inline">{{ error }}</span>
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
