@@ -120,40 +120,19 @@ def speler(memberid):
         s = Speler.query.filter_by(memberid=memberid).first()
         return render_template('speler.html', s=s)
 
-@app.route('/database_update', methods=['GET', 'POST'])
+@app.route('/administratie', methods=['GET', 'POST'])
 @login_admin_required
-def database_update():
+def administratie():
 
     database_update_form = DatabaseForm()
-    aanmaak_gebruiker_form = RegistrationForm()
 
     if database_update_form.validate_on_submit():
         VBL_login = database_update_form.VBL_login.data
         VBL_paswoord = database_update_form.VBL_paswoord.data
         importeerdata.importeernaardatabase(VBL_login, VBL_paswoord)
         flash('Update database succesvol', 'success')
-        return redirect(url_for('database_update'))
-    return render_template('administratie.html', title='Administratie', database_update_form=database_update_form, aanmaak_gebruiker_form=aanmaak_gebruiker_form)
-
-# aanmaak gebruiker route
-@app.route('/aanmaak_gebruiker', methods=['GET', 'POST'])
-@login_admin_required
-def aanmaak_gebruiker():
-    #TODO: opdelen in verschillende administratieve taken:
-    #       - nieuwe gebruikers toevoegen
-
-    database_update_form = DatabaseForm()
-    aanmaak_gebruiker_form = RegistrationForm()
-
-    if aanmaak_gebruiker_form.validate_on_submit():
-        user = Gebruiker(gebruikersnaam=aanmaak_gebruiker_form.username.data, naam=aanmaak_gebruiker_form.name.data)
-        user.set_password(aanmaak_gebruiker_form.password.data)
-        user.rechten = aanmaak_gebruiker_form.rechten.data
-        db.session.add(user)
-        db.session.commit()
-        flash('Nieuwe gebruiker aangemaakt', 'success')
-        return redirect(url_for('aanmaak_gebruiker'))
-    return render_template('administratie.html', title='Administratie', aanmaak_gebruiker_form=aanmaak_gebruiker_form, database_update_form=database_update_form)
+        return redirect(url_for('administratie'))
+    return render_template('administratie.html', title='Administratie', database_update_form=database_update_form)
 
 @app.route('/over')
 def over():
