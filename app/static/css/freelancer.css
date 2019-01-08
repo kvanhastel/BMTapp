@@ -112,6 +112,7 @@ section h2 {
 
 #mainNav .navbar-brand {
   color: #fff;
+  vertical-align: middle;
 }
 
 #mainNav .navbar-nav {

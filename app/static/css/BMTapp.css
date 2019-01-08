@@ -6,15 +6,16 @@
     background-color:#f8de00!important
 }
 body{
-    background-color:#f0f0f0!important
+    background-color:#f0f0f0!important;
+}
+
+h1.text-black-70
+{
+    color: black;
 }
 
 #mainBody
 {padding-top: 160pt}
-
-.text-black-70 { 
-    color: rgb(70, 70, 70)
-}
 
 .footer{
     padding-top: 1rem;
@@ -27,5 +28,23 @@ section {
 
 .nav-item-right{
     position: absolute;
-    right: 0px;
+    right: 10px;
+    font-size: 10px;
 }
+
+.footer
+{
+    background-color: black;
+}
+
+
+.copyright
+{
+    background-color: #f8de00;
+    color: black;
+}
+
+#lager{
+        position: relative;
+        top: 25px;
+        }
