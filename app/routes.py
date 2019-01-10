@@ -73,8 +73,8 @@ def terugbetalingsformulier():
             # als de speler dit seizoen betaald heeft
             if selected_speler.datum_betaling >= inschrijfdag:
                 maak_document_ziekenfonds(selected_speler, terugbetaling_form.ziekenfonds.data)
-                flash('Document aangemaakt', 'success')
-                return redirect(url_for('downloadformulier')) # extra variabele speler meegeven en javascript plaatsen in downloadformulier
+                flash('Je document werd aangemaakt', 'success')
+                return redirect(url_for('terugbetalingsformulier')) # extra variabele speler meegeven en javascript plaatsen in downloadformulier
         # als de speler niet in database zit
         else:
             flash('Je bent geen lid of je hebt je naam verkeerd ingegeven', 'danger')
