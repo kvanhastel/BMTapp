@@ -134,13 +134,9 @@ def administratie():
         return redirect(url_for('administratie'))
     return render_template('administratie.html', title='Administratie', database_update_form=database_update_form)
 
-@app.route('/over')
-def over():
-    return render_template('over.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
+@app.route('/info')
+def info():
+    return render_template('info.html')
 
 @app.route('/test')
 def test():
