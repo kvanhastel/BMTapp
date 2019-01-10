@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, RadioField, SelectField, TextAreaField
 from wtforms.validators import ValidationError, DataRequired, EqualTo, InputRequired
 from app.models import Gebruiker, Ploeg, Speler
 from app import Config, db
@@ -10,6 +10,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('Paswoord', validators=[DataRequired(message="Geen paswoord opgegeven")])
     remember_me = BooleanField('Onthoud')
     submit = SubmitField('Log In')
+
+class ContactForm(FlaskForm):
+    name = StringField('naam', validators=[DataRequired(message="Geen naam opgegeven")])
+    email = StringField('Paswoord', validators=[DataRequired(message="Geen e-mail opgegeven")])
+    message = TextAreaField('Bericht')
+    submit = SubmitField('Verstuur')
 
 
 class RegistrationForm(FlaskForm):

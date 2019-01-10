@@ -1,13 +1,15 @@
 from flask import Flask, render_template, json, redirect, url_for, flash, request
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import TerugbetalingsForm, LoginForm, BasisloegenForm, DatabaseForm, RegistrationForm
+from app.forms import TerugbetalingsForm, LoginForm, BasisloegenForm, DatabaseForm, RegistrationForm, ContactForm
 from app.models import Gebruiker, Speler
 from app.ziekenfonds import maak_document_ziekenfonds
+from app.verzendbericht import verzend_bericht
 import time, datetime
 from werkzeug.urls import url_parse
 from sqlalchemy import or_, and_
 from functools import wraps
 from app import db, importeerdata
+
 
 import os
 
@@ -134,9 +136,19 @@ def administratie():
         return redirect(url_for('administratie'))
     return render_template('administratie.html', title='Administratie', database_update_form=database_update_form)
 
-@app.route('/info')
+@app.route('/info', methods=['GET', 'POST'])
 def info():
-    return render_template('info.html')
+
+    contact_form = ContactForm()
+
+    if contact_form.validate_on_submit():
+        name = contact_form.name.data
+        email = contact_form.email.data
+        message = contact_form.message.data
+        verzend_bericht(name, email, message)
+        flash('Je bericht is verstuurd en je krijgt zo snel mogelijk antwoord', 'success')
+        return redirect(url_for('info'))
+    return render_template('info.html', contact_form=contact_form)
 
 @app.route('/test')
 def test():
