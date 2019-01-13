@@ -1,4 +1,4 @@
-from flask import Flask, render_template, json, redirect, url_for, flash, request
+from flask import Flask, render_template, json, redirect, url_for, flash, request, send_file
 from flask_login import current_user, login_user, logout_user, login_required
 from app.forms import TerugbetalingsForm, LoginForm, BasisloegenForm, DatabaseForm, RegistrationForm, ContactForm
 from app.models import Gebruiker, Speler
@@ -74,7 +74,8 @@ def terugbetalingsformulier():
             if selected_speler.datum_betaling >= inschrijfdag:
                 maak_document_ziekenfonds(selected_speler, terugbetaling_form.ziekenfonds.data)
                 flash('Je document werd aangemaakt', 'success')
-                return redirect(url_for('terugbetalingsformulier')) # extra variabele speler meegeven en javascript plaatsen in downloadformulier
+                #return redirect(url_for('terugbetalingsformulier')) # extra variabele speler meegeven en javascript plaatsen in downloadformulier
+                return send_file(basedir + "/templates/formulieren/Form_filled.pdf", as_attachment='pdf', attachment_filename='terugbetalingsformulier.pdf')
         # als de speler niet in database zit
         else:
             flash('Je bent geen lid of je hebt je naam verkeerd ingegeven', 'danger')
