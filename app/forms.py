@@ -49,6 +49,31 @@ class TerugbetalingsForm(FlaskForm):
                                   validators=[InputRequired(message="Geen ziekenfonds opgegeven")])
     submit = SubmitField('Download Formulier')
 
+
+class PloegopstellingsForm(FlaskForm):
+    
+    lijst_ploegen = []
+    query_ploegen = Ploeg.query.all()
+    i = 1
+    for ploeg in query_ploegen:
+        lijst_ploegen.append((str(i), ploeg.ploegnaam))
+        i = i+1
+    
+    query_ploegen = Ploeg.query.all()
+
+    lijst_spelers = ["test1", "test2", "test3"]
+    speler1 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler2 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler3 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler4 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler5 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler6 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler7 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+    speler8 = SelectField('Speler', choices=lijst_spelers, validators=[InputRequired(message="Geen speler opgegeven")])
+
+    submit = SubmitField('Download Ploegopstelling')
+
+
 class BasisloegenForm(FlaskForm):
 
     # lijst samenstellen ploegen

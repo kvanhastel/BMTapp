@@ -1,6 +1,6 @@
 from flask import Flask, render_template, json, redirect, url_for, flash, request, send_file
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import TerugbetalingsForm, LoginForm, BasisloegenForm, DatabaseForm, RegistrationForm, ContactForm
+from app.forms import TerugbetalingsForm, LoginForm, BasisloegenForm, DatabaseForm, RegistrationForm, ContactForm, PloegopstellingsForm
 from app.models import Gebruiker, Speler
 from app.ziekenfonds import maak_document_ziekenfonds
 from app.verzendbericht import verzend_bericht
@@ -86,10 +86,11 @@ def terugbetalingsformulier():
 def downloadformulier():
     return render_template('downloadformulier.html')
 
-@app.route('/ploegopstellingsformulier')
+@app.route('/ploegopstellingsformulier', methods=['GET','POST'])
 #@login_ploegkapitein_required
 def ploegopstellingsformulier():
-    return render_template('ploegopstellingsformulier.html')
+    ploegopstelling_form = PloegopstellingsForm()
+    return render_template('ploegopstellingsformulier.html', ploegopstelling_form=ploegopstelling_form)
 
 @app.route('/reservespelers')
 #@login_ploegkapitein_required
