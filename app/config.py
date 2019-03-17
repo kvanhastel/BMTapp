@@ -11,10 +11,10 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    # info ziekenfondsen
+    # lijst verschillende ziekenfondsen
     ZIEKENFONDSEN = [('CM', 'Christelijke Mutualiteit'),('PAR', 'Partena'), ('OZ', 'Onafhankelijk Ziekenfonds'), ('BM', 'Bond Moyson'), ('VNZ', 'Vlaams en Neutraal Ziekenfonds'), ('LM', 'Liberale Mutualiteit')]
 
-    # info voor inloggen op website VBL
+    # link voor in te loggen op website VBL
     LOGIN_URL = 'https://badmintonvlaanderen.toernooi.nl/member/login.aspx'
 
     #lijst competities
